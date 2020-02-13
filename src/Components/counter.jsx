@@ -23,13 +23,18 @@ class Counter extends Component {
         //updating the state
         this.setState({count: this.state.count + 1})
     }
+
+    handleDecrement =() =>{
+        console.log('decrement clicked');
+        this.setState({count:this.state.count - 1})
+    }
     render() {
 
         return (
             <>
                 <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
                 <button onClick ={this.handleIncrement} className="btn btn-secondary btn-sm">Increment</button>
-                
+                <button onClick = {this.handleDecrement} className= "btn btn-warning btn-sm">Decrement</button>
                 {/* conditonal rendering */}
                 {/* {this.state.tags.length === 0 && 'Please create a list'}
                 {this.renderTags()} */}
