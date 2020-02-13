@@ -17,9 +17,11 @@ class Counter extends Component {
         return <ul> {this.state.tags.map(tag => <li key={tag}>{tag}</li>)} </ul>;
     }
 
-    //Use arrow functions don't rebind this keyword, it inherits it
-    handleIncrement = ()=> {
-        console.log('increment clicked', this);
+    //Use arrow functions. Arrow functions don't rebind 'this' keyword, it inherits it
+    handleIncrement = () => {
+        console.log('increment clicked');
+        //updating the state
+        this.setState({count: this.state.count + 1})
     }
     render() {
 
@@ -35,12 +37,14 @@ class Counter extends Component {
         );
     }
 
+    //Rendering Classes Dynamically
     getBadgeClasses() {
         let classes = "badge m-2 badge-";
         classes += this.state.count === 0 ? "warning" : "primary";
         return classes;
     }
 
+    //Displaying count dynamically
     formatCount() {
         const { count } = this.state
         return count === 0 ? 'Zero' : count;
