@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 
 class Counter extends Component {
     state = {
-        value: this.props.value // the props is received from the parent component
+        value: this.props.counter.value // the props is received from the parent component
         // tags: ['tag1', 'tag2', 'tag3']
     };
-
     //To bind eventhandlers
     // constructor(){
     //     super()
@@ -21,7 +20,7 @@ class Counter extends Component {
     handleIncrement = () => {
         console.log('increment clicked');
         //updating the state
-        this.setState({count: this.state.value + 1})
+        this.setState({value: this.state.value + 1})
     }
 
     handleDecrement =() =>{
@@ -30,11 +29,13 @@ class Counter extends Component {
     }
     render() {
         console.log('props', this.props)
+        console.log('state', this.state)
         return (
             <>
                 <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
                 <button onClick ={this.handleIncrement} className="btn btn-secondary btn-sm">Increment</button>
                 <button onClick = {this.handleDecrement} className= "btn btn-warning btn-sm">Decrement</button>
+                <button onClick={() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-small">Delete</button>
                 {/* conditonal rendering */}
                 {/* {this.state.tags.length === 0 && 'Please create a list'}
                 {this.renderTags()} */}
