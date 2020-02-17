@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 //Stateless functional component, shortcut = sfc
-const Navbar = () =>{
+const Navbar = (props) =>{
     return ( 
         <nav className = "navbar navbar-light bg-light">
             <a className = "navbar-brand" href="#">
-                Navbar <span className="badge badge-pill badge-secondary">{this.props.totalCounters}</span>
+                Navbar <span className="badge badge-pill badge-secondary">{props.totalCounters}</span>
             </a>
         </nav>
      );
