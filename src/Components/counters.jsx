@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; //shortcut key for import React and Component = imrc
 import Counter from './counter';
 
-class Counters extends Component {
+class Counters extends Component {  //Shorcut key for creating class component = cc
     
     render() { 
         console.log(this.props)
