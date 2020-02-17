@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 
+
+//Single Source of truths i.e. turning this component into a controlled component **
 class Counter extends Component {
-    state = {
-        value: this.props.counter.value // the props is received from the parent component
-        // tags: ['tag1', 'tag2', 'tag3']
-    };
+    // state = { **
+    //     value: this.props.counter.value // the props is received from the parent component
+    //     // tags: ['tag1', 'tag2', 'tag3']
+    // };
     //To bind eventhandlers
     // constructor(){
     //     super()
@@ -17,24 +19,24 @@ class Counter extends Component {
     }
 
     //Use arrow functions. Arrow functions don't rebind 'this' keyword, it inherits it
-    handleIncrement = () => {
-        console.log('increment clicked');
-        //updating the state
-        this.setState({value: this.state.value + 1})
-    }
+    // handleIncrement = () => { **
+    //     console.log('increment clicked');
+    //     //updating the state
+    //     this.setState({value: this.state.value + 1})
+    // }
 
-    handleDecrement =() =>{
-        console.log('decrement clicked');
-        this.setState({value:this.state.value - 1})
-    }
+    // handleDecrement =() =>{ **
+    //     console.log('decrement clicked');
+    //     this.setState({value:this.state.value - 1})
+    // }
     render() {
         console.log('props', this.props)
         console.log('state', this.state)
         return (
             <>
                 <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-                <button onClick ={this.handleIncrement} className="btn btn-secondary btn-sm">Increment</button>
-                <button onClick = {this.handleDecrement} className= "btn btn-warning btn-sm">Decrement</button>
+                <button onClick ={() => this.props.onIncrement(this.props.counter)} className="btn btn-secondary btn-sm">Increment</button>
+                <button onClick = {() => this.props.handleDecrement(this.props.counter)} className= "btn btn-warning btn-sm">Decrement</button>
                 <button onClick={() => this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-small">Delete</button>
                 {/* conditonal rendering */}
                 {/* {this.state.tags.length === 0 && 'Please create a list'}
@@ -46,13 +48,13 @@ class Counter extends Component {
     //Rendering Classes Dynamically
     getBadgeClasses() {
         let classes = "badge m-2 badge-";
-        classes += this.state.value === 0 ? "warning" : "primary";
+        classes += this.props.counter.value === 0 ? "warning" : "primary";
         return classes;
     }
 
     //Displaying count dynamically
     formatCount() {
-        const { value } = this.state
+        const { value } = this.props.counter
         return value === 0 ? 'Zero' : value;
     }
 }

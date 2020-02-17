@@ -12,18 +12,37 @@ class Counters extends Component {
         
      }
     
+     handleIncrement = (counter) => {
+         console.log(counter)
+         const counters = [...this.state.counters]
+         const index = counters.indexOf(counter)
+         counters[index] = {...counter}
+         counters[index].value++
+         this.setState({counters})
+     }
+
      handleDelete = (e) =>{
-        console.log('event handler called', e)
-        const counters = this.state.counters.filter(c => c.id !== e)
+        console.log('event handler called', e);
+        const counters = this.state.counters.filter(c => c.id !== e);
+        this.setState({counters});
+    }
+
+    handleReset = ()=>{
+        const counters = this.state.counters.map(c => {
+            c.value = 0;
+            return c;
+        })
         this.setState({counters})
     }
     render() { 
         return (
             <div>
+                <button onClick ={this.handleReset}className="btn btn-primary btn-sm m-2">RESET</button>
                 {this.state.counters.map(c => <Counter 
                 key= { c.id} 
                 counter = {c}
-                onDelete ={this.handleDelete} 
+                onDelete ={this.handleDelete}
+                onIncrement = {this.handleIncrement}
                 />)}
                 {/* the value is passed down into the child component as a prop */}
             </div>
