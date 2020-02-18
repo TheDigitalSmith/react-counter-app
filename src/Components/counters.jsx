@@ -5,7 +5,7 @@ class Counters extends Component {  //Shorcut key for creating class component =
     
     render() { 
         console.log(this.props)
-        const {onReset, onIncrement, onDelete, counters} = this.props
+        const {onReset, onIncrement, onDelete, counters, onDecrement} = this.props
         return (
             <div>
                 <button onClick ={onReset} className="btn btn-primary btn-sm m-2">RESET</button>
@@ -14,6 +14,7 @@ class Counters extends Component {  //Shorcut key for creating class component =
                 counter = {c}
                 onDelete ={onDelete}
                 onIncrement = {onIncrement}
+                onDecrement = {onDecrement}
                 />)}
                 {/* the value is passed down into the child component as a prop */}
             </div>
